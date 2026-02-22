@@ -1,0 +1,180 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-bg-primary: #0a0a0f;
+  --color-bg-secondary: #0f0f1a;
+  --color-bg-card: #13131f;
+  --color-border: #1e1e2e;
+  --color-text-primary: #e2e8f0;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #475569;
+  --color-accent-purple: #a855f7;
+  --color-accent-cyan: #06b6d4;
+  --color-accent-blue: #3b82f6;
+
+  --font-sans: "Inter", "Noto Sans SC", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: #2d2d44;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3d3d5c;
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow effect */
+.glow-purple {
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.15);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.15);
+}
+
+/* Card hover effect */
+.card-hover {
+  transition: all 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(168, 85, 247, 0.12);
+  border-color: rgba(168, 85, 247, 0.3) !important;
+}
+
+/* Product card hover */
+.product-card {
+  transition: all 0.3s ease;
+}
+.product-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(168, 85, 247, 0.35) !important;
+  box-shadow: 0 8px 30px rgba(168, 85, 247, 0.12);
+}
+
+/* Blog card hover */
+.blog-card {
+  transition: all 0.3s ease;
+}
+.blog-card:hover {
+  transform: translateY(-1px);
+  border-color: rgba(168, 85, 247, 0.35) !important;
+  box-shadow: 0 4px 20px rgba(168, 85, 247, 0.08);
+}
+
+/* Interest card hover (about page) */
+.interest-card {
+  transition: all 0.2s ease;
+}
+.interest-card:hover {
+  border-color: rgba(168, 85, 247, 0.3) !important;
+  transform: translateY(-1px);
+}
+
+/* Related card hover */
+.related-card {
+  transition: all 0.2s ease;
+}
+.related-card:hover {
+  border-color: rgba(168, 85, 247, 0.35) !important;
+}
+
+/* Footer link */
+.footer-link {
+  transition: color 0.2s ease;
+}
+.footer-link:hover {
+  color: #a855f7 !important;
+}
+
+/* Nav link hover */
+.nav-link-item {
+  transition: all 0.2s ease;
+}
+.nav-link-item:not(.active):hover {
+  color: #e2e8f0 !important;
+  background-color: rgba(255,255,255,0.05) !important;
+}
+
+/* CTA button hover */
+.btn-primary {
+  transition: opacity 0.2s ease;
+}
+.btn-primary:hover {
+  opacity: 0.85;
+}
+.btn-outline {
+  transition: all 0.2s ease;
+}
+.btn-outline:hover {
+  border-color: rgba(168, 85, 247, 0.4) !important;
+  background-color: rgba(168, 85, 247, 0.05) !important;
+}
+
+/* Prose dark theme override */
+.prose {
+  --tw-prose-body: #cbd5e1;
+  --tw-prose-headings: #f1f5f9;
+  --tw-prose-links: #a855f7;
+  --tw-prose-bold: #f1f5f9;
+  --tw-prose-counters: #94a3b8;
+  --tw-prose-bullets: #94a3b8;
+  --tw-prose-hr: #1e1e2e;
+  --tw-prose-quotes: #e2e8f0;
+  --tw-prose-quote-borders: #a855f7;
+  --tw-prose-code: #e2e8f0;
+  --tw-prose-pre-code: #e2e8f0;
+  --tw-prose-pre-bg: #0f0f1a;
+  --tw-prose-th-borders: #1e1e2e;
+  --tw-prose-td-borders: #1e1e2e;
+}
+
+/* Code highlight */
+pre {
+  border: 1px solid #1e1e2e;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+code:not(pre code) {
+  background: #1a1a2e;
+  color: #a855f7;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.875em;
+  font-family: var(--font-mono);
+}
