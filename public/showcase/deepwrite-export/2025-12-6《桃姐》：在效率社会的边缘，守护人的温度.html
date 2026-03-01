@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2025-12-6《桃姐》：在效率社会的边缘，守护人的温度</title>
+
+<style>
+/* ===============================
+   基础结构
+================================ */
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",
+              Roboto,"Helvetica Neue",Arial,sans-serif;
+  transition:.3s;
+}
+
+/* 中间阅读区竖向拉通，宽度收窄 */
+.container{
+  max-width:780px;
+  margin:0 auto;
+  padding:80px 40px;
+  line-height:1.85;
+  font-size:18px;
+  min-height:100vh;
+  color:var(--text);
+}
+
+/* 两侧纯色 */
+body::before,
+body::after{
+  content:"";
+  position:fixed;
+  top:0;bottom:0;
+  width:25%;
+  z-index:-1;
+}
+body::before{left:0;}
+body::after{right:0;}
+
+/* ===============================
+   左侧目录
+================================ */
+.toc{
+  position:fixed;
+  left:20px;
+  right:auto;
+  top:50%;
+  transform:translateY(-50%);
+  width:280px;
+  max-height:76vh;
+  overflow-y:auto;
+  background:rgba(255,255,255,0.1);
+  backdrop-filter:blur(10px);
+  border-radius:12px;
+  padding:18px;
+  z-index:100;
+  transition:opacity 0.3s, transform 0.3s;
+  scrollbar-width:thin;
+  scrollbar-color:var(--toc-scroll-thumb, rgba(255,255,255,0.25)) var(--toc-scroll-track, rgba(0,0,0,0.35));
+}
+.toc::-webkit-scrollbar{
+  width:10px;
+}
+.toc::-webkit-scrollbar-track{
+  background:var(--toc-scroll-track, rgba(0,0,0,0.35));
+  border-radius:10px;
+}
+.toc::-webkit-scrollbar-thumb{
+  background:var(--toc-scroll-thumb, rgba(255,255,255,0.25));
+  border-radius:10px;
+  border:2px solid transparent;
+  background-clip:padding-box;
+}
+.toc::-webkit-scrollbar-thumb:hover{
+  background:var(--toc-scroll-thumb-hover, rgba(255,255,255,0.38));
+}
+.toc.hidden{
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(-50%) translateX(-20px);
+}
+.toc.toc-right{
+  left:auto;
+  right:20px;
+}
+.toc.hidden.toc-right{
+  transform:translateY(-50%) translateX(20px);
+}
+.toc-title{
+  font-size:16px;
+  font-weight:600;
+  margin-bottom:14px;
+  color:var(--h);
+}
+.toc ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+.toc li{
+  margin:8px 0;
+}
+.toc a{
+  display:block;
+  text-decoration:none;
+  color:var(--text);
+  font-size:15px;
+  padding:6px 10px;
+  border-radius:6px;
+  transition:background 0.2s;
+  opacity:0.8;
+}
+.toc a:hover{
+  background:rgba(128,128,128,0.2);
+  opacity:1;
+}
+.toc a.active{
+  background:rgba(96,165,250,0.22);
+  color:var(--h);
+  opacity:1;
+  font-weight:600;
+}
+.toc .toc-h1{
+  font-weight:600;
+  margin-left:0;
+}
+.toc .toc-h2{
+  font-weight:400;
+  margin-left:18px;
+  font-size:14px;
+}
+
+/* ===============================
+   背景模式
+================================ */
+.theme-dark-1{background:#26282d;color:#ddd;}
+.theme-dark-1::before,.theme-dark-1::after{background:#141518;}
+
+.theme-dark-1,.theme-dark-2,.theme-dark-3{
+  --toc-scroll-track: rgba(8, 10, 16, 0.72);
+  --toc-scroll-thumb: rgba(166, 177, 209, 0.45);
+  --toc-scroll-thumb-hover: rgba(196, 206, 233, 0.66);
+}
+
+.theme-dark-2{background:#202124;color:#ddd;}
+.theme-dark-2::before,.theme-dark-2::after{background:#101113;}
+
+.theme-dark-3{background:#1a1a1a;color:#ddd;}
+.theme-dark-3::before,.theme-dark-3::after{background:#0a0a0a;}
+
+.theme-light-1{background:#fbf8f2;color:#333;}
+.theme-light-1::before,.theme-light-1::after{background:#e6e2d8;}
+
+.theme-green{background:#e9f1e2;color:#243024;}
+.theme-green::before,.theme-green::after{background:#cfd9c6;}
+
+.theme-light-1,.theme-green{
+  --toc-scroll-track: rgba(125, 133, 150, 0.18);
+  --toc-scroll-thumb: rgba(80, 90, 110, 0.38);
+  --toc-scroll-thumb-hover: rgba(62, 74, 98, 0.52);
+}
+
+/* ===============================
+   阅读变量系统 (最终优化)
+================================ */
+.container h1 { color: var(--h); }
+.container h2 { color: var(--h); opacity:0.85; }
+.container h3 { color: var(--h); opacity:0.7; }
+.container h4 { color: var(--h); opacity:0.55; }
+.container strong { color: var(--b); }
+.container em { color: var(--i); }
+.container u { color: var(--b); text-decoration: underline; }
+.container a { color: var(--l); }
+.container code { color: var(--c); }
+.container blockquote {
+  border-left: 4px solid var(--q);
+  padding-left: 1em;
+  color: var(--q);
+}
+
+/* 深色阅读 10 (统一文字色 #D8DEE9) */
+.reading-dark-01{--text:#D8DEE9;--h:#5E81AC;--b:#D08770;--i:#EBCB8B;--l:#81A1C1;--c:#A3BE8C;--q:#B48EAD;}
+.reading-dark-02{--text:#D8DEE9;--h:#88C0D0;--b:#A3BE8C;--i:#8FBC8F;--l:#81A1C1;--c:#EBCB8B;--q:#B48EAD;}
+.reading-dark-03{--text:#D8DEE9;--h:#D08770;--b:#EBCB8B;--i:#A3BE8C;--l:#81A1C1;--c:#BF616A;--q:#B48EAD;}
+.reading-dark-04{--text:#D8DEE9;--h:#EBCB8B;--b:#A3BE8C;--i:#B48EAD;--l:#81A1C1;--c:#D08770;--q:#BF616A;}
+.reading-dark-05{--text:#D8DEE9;--h:#A3BE8C;--b:#EBCB8B;--i:#B48EAD;--l:#81A1C1;--c:#D08770;--q:#BF616A;}
+.reading-dark-06{--text:#D8DEE9;--h:#B48EAD;--b:#81A1C1;--i:#8FBCBB;--l:#5E81AC;--c:#EBCB8B;--q:#D08770;}
+.reading-dark-07{--text:#D8DEE9;--h:#81A1C1;--b:#5E81AC;--i:#8FBCBB;--l:#88C0D0;--c:#EBCB8B;--q:#B48EAD;}
+.reading-dark-08{--text:#D8DEE9;--h:#8FBCBB;--b:#88C0D0;--i:#81A1C1;--l:#5E81AC;--c:#EBCB8B;--q:#B48EAD;}
+.reading-dark-09{--text:#D8DEE9;--h:#8FBCBB;--b:#BF616A;--i:#EBCB8B;--l:#81A1C1;--c:#A3BE8C;--q:#B48EAD;}
+.reading-dark-10{--text:#D8DEE9;--h:#BC8F8F;--b:#D08770;--i:#EBCB8B;--l:#81A1C1;--c:#A3BE8C;--q:#B48EAD;}
+
+/* 浅色阅读 10 (统一文字色 #2C2C2C) */
+.reading-light-01{--text:#2C2C2C;--h:#1F4E79;--b:#005A9E;--i:#4A6FA5;--l:#0066CC;--c:#8A4B2A;--q:#6A3E75;}
+.reading-light-02{--text:#2C2C2C;--h:#8B5A2B;--b:#3E7F3E;--i:#5A8F7B;--l:#2B6F8C;--c:#9C7B3B;--q:#6D4C7D;}
+.reading-light-03{--text:#2C2C2C;--h:#2C3E75;--b:#6A3FA0;--i:#6E6E8A;--l:#3A5FCD;--c:#9A5B2A;--q:#8C2F39;}
+.reading-light-04{--text:#2C2C2C;--h:#9C6E3A;--b:#6A3FA0;--i:#6E6E8A;--l:#3A5FCD;--c:#9A5B3A;--q:#8C2F39;}
+.reading-light-05{--text:#2C2C2C;--h:#7A4E1D;--b:#8C5A2B;--i:#A67C52;--l:#9A6B3A;--c:#7A3E1D;--q:#8A2E2E;}
+.reading-light-06{--text:#2C2C2C;--h:#1A3C66;--b:#2E5C9A;--i:#5C6F8F;--l:#3366CC;--c:#5F7F2E;--q:#5E3E99;}
+.reading-light-07{--text:#2C2C2C;--h:#5B3F7D;--b:#3A5C9E;--i:#7A8A9A;--l:#2E7DAF;--c:#B35A2E;--q:#9A2F3A;}
+.reading-light-08{--text:#2C2C2C;--h:#2F5F5F;--b:#3E7F3E;--i:#6A6A6A;--l:#2E5F8A;--c:#9C6A2A;--q:#6A4A9C;}
+.reading-light-09{--text:#2C2C2C;--h:#2A6F6F;--b:#2A5F8A;--i:#6E78A5;--l:#1F6FB2;--c:#B36B2E;--q:#7A3E8A;}
+.reading-light-10{--text:#2C2C2C;--h:#2A4F7A;--b:#1E6FAF;--i:#6E7F8F;--l:#1976D2;--c:#B37A2A;--q:#7A4F9A;}
+
+/* ===============================
+   控制按钮 + 激活状态
+================================ */
+.controls{
+  position:fixed;
+  top:15px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  transition:opacity 0.3s, transform 0.3s;
+  z-index:100;
+}
+.controls.hidden{
+  opacity:0;
+  pointer-events:none;
+  transform:translateX(-50%) translateY(-20px);
+}
+
+.row{display:flex;gap:8px;justify-content:center;}
+
+/* 右上角悬浮工具条（替代旧圆形按钮） */
+.floating-panel{
+  position:fixed;
+  top:15px;
+  right:20px;
+  display:flex;
+  gap:8px;
+  align-items:center;
+  padding:8px;
+  border-radius:14px;
+  background:rgba(20,20,20,0.26);
+  backdrop-filter:blur(10px);
+  box-shadow:0 6px 24px rgba(0,0,0,0.18);
+  z-index:101;
+  transition:all 0.2s ease;
+}
+
+.panel-btn{
+  border:none;
+  cursor:pointer;
+  color:var(--text);
+  background:rgba(255,255,255,0.12);
+  border-radius:10px;
+  height:36px;
+  padding:0 12px;
+  font-size:13px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  transition:background 0.2s, transform 0.15s;
+}
+
+.panel-btn:focus-visible,
+.bg-btn:focus-visible,
+.read-btn:focus-visible,
+.toc a:focus-visible{
+  outline:2px solid #60a5fa;
+  outline-offset:2px;
+}
+
+.panel-btn:hover{
+  background:rgba(255,255,255,0.22);
+  transform:translateY(-1px);
+}
+
+.panel-btn.is-active{
+  background:rgba(96,165,250,0.28);
+}
+
+.panel-btn .ico{
+  font-size:14px;
+  opacity:0.9;
+}
+
+/* 沉浸阅读：主题区与目录都隐藏时，右上角退化为小圆点，悬停再展开 */
+.floating-panel.compact{
+  width:18px;
+  height:18px;
+  padding:0;
+  border-radius:999px;
+  background:rgba(130,130,130,0.28);
+  box-shadow:none;
+  overflow:hidden;
+  cursor:pointer;
+}
+.floating-panel.compact::before{
+  content:"";
+  width:6px;
+  height:6px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.55);
+  margin:auto;
+}
+.floating-panel.compact .panel-btn{
+  opacity:0;
+  transform:translateX(8px);
+  pointer-events:none;
+}
+.floating-panel.compact:hover,
+.floating-panel.compact:focus-within{
+  width:auto;
+  height:auto;
+  padding:8px;
+  border-radius:14px;
+  background:rgba(20,20,20,0.26);
+  box-shadow:0 6px 24px rgba(0,0,0,0.18);
+  overflow:visible;
+}
+.floating-panel.compact:hover::before,
+.floating-panel.compact:focus-within::before{
+  display:none;
+}
+.floating-panel.compact:hover .panel-btn,
+.floating-panel.compact:focus-within .panel-btn{
+  opacity:1;
+  transform:translateX(0);
+  pointer-events:auto;
+}
+
+/* ===============================
+   移动端优化：目录默认折叠，点击按钮展开
+================================ */
+@media (max-width: 1024px){
+  body::before,
+  body::after{
+    display:none;
+  }
+
+  .container{
+    max-width:100%;
+    padding:72px 18px 32px;
+    font-size:16px;
+    line-height:1.78;
+  }
+
+  .floating-panel{
+    top:10px;
+    right:10px;
+    left:10px;
+    justify-content:flex-end;
+    gap:6px;
+    padding:6px 8px;
+  }
+
+  .panel-btn{
+    height:34px;
+    padding:0 10px;
+    font-size:12px;
+  }
+
+  .toc{
+    top:0;
+    left:0;
+    right:auto;
+    width:min(88vw,360px);
+    height:100vh;
+    max-height:100vh;
+    border-radius:0 14px 14px 0;
+    padding:20px 16px;
+    transform:none;
+    background:rgba(15,18,28,0.92);
+    box-shadow:0 8px 36px rgba(0,0,0,0.35);
+    transition:transform 0.28s ease, opacity 0.2s ease;
+    z-index:120;
+  }
+
+  .toc-title{
+    font-size:17px;
+  }
+
+  .toc a{
+    font-size:16px;
+    padding:7px 10px;
+  }
+
+  .toc .toc-h2{
+    font-size:15px;
+  }
+
+  .toc.toc-right{
+    left:auto;
+    right:0;
+    border-radius:14px 0 0 14px;
+  }
+
+  .toc.hidden{
+    opacity:0;
+    pointer-events:none;
+    transform:translateX(-104%);
+  }
+
+  .toc.hidden.toc-right{
+    transform:translateX(104%);
+  }
+}
+
+/* ===============================
+   打印友好：只保留正文
+================================ */
+@media print{
+  body::before,
+  body::after,
+  .floating-panel,
+  .controls,
+  .toc{
+    display:none !important;
+  }
+
+  body{
+    background:#fff !important;
+    color:#111 !important;
+  }
+
+  .container{
+    max-width:none !important;
+    width:100% !important;
+    margin:0 !important;
+    padding:0 !important;
+    font-size:12pt !important;
+    line-height:1.6 !important;
+    color:#111 !important;
+  }
+
+  a{
+    color:#111 !important;
+    text-decoration:underline;
+  }
+}
+
+.bg-btn{
+  width:48px;height:48px;
+  border-radius:50%;
+  cursor:pointer;
+  border:2px solid rgba(255,255,255,.4);
+  transition: 0.1s;
+}
+/* 背景按钮激活态：白色外圈 + 微放大 */
+.bg-btn.active {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px rgba(0,0,0,0.2);
+  transform: scale(1.05);
+  border-color: transparent;
+}
+
+.read-btn{
+  width:26px;height:26px;
+  border-radius:50%;
+  cursor:pointer;
+  border:none;
+  transition: 0.1s;
+}
+/* 阅读按钮激活态：醒目光晕 + 放大 */
+.read-btn.active {
+  box-shadow: 0 0 0 2px white, 0 0 0 4px rgba(0,0,0,0.3);
+  transform: scale(1.15);
+  z-index: 2;
+}
+</style>
+</head>
+
+<body class="theme-dark-2 reading-dark-01">
+
+<!-- 右上角悬浮工具条 -->
+<div class="floating-panel">
+  <button class="panel-btn" id="fullscreenBtn" onclick="toggleFullscreen()" title="进入/退出全屏阅读" aria-label="进入或退出全屏阅读">
+    <span class="ico" id="fullscreenIcon">⛶</span>
+    <span id="fullscreenLabel">全屏</span>
+  </button>
+  <button class="panel-btn" onclick="toggleControls()" title="显示/隐藏主题控制区" aria-label="显示或隐藏主题控制区">
+    <span class="ico">🎛️</span>
+    <span>主题</span>
+  </button>
+  <button class="panel-btn" onclick="toggleToc()" title="显示/隐藏目录" aria-label="显示或隐藏目录">
+    <span class="ico">📑</span>
+    <span>目录</span>
+  </button>
+  <button class="panel-btn" id="tocSideBtn" onclick="toggleTocSide()" title="切换目录在左侧或右侧" aria-label="切换目录在左侧或右侧">
+    <span class="ico">↔️</span>
+    <span id="tocSideLabel">目录靠左</span>
+  </button>
+</div>
+
+<div class="controls" id="controls">
+  <!-- 第一排背景按钮：增加 data-theme 属性，便于激活高亮 -->
+  <div class="row">
+    <button class="bg-btn" style="background:#26282d" data-theme="theme-dark-1" onclick="setTheme('theme-dark-1')"></button>
+    <button class="bg-btn" style="background:#202124" data-theme="theme-dark-2" onclick="setTheme('theme-dark-2')"></button>
+    <button class="bg-btn" style="background:#1a1a1a" data-theme="theme-dark-3" onclick="setTheme('theme-dark-3')"></button>
+    <button class="bg-btn" style="background:#fbf8f2;border-color:#ccc" data-theme="theme-light-1" onclick="setTheme('theme-light-1')"></button>
+    <button class="bg-btn" style="background:#e9f1e2;border-color:#9fb59f" data-theme="theme-green" onclick="setTheme('theme-green')"></button>
+  </div>
+
+  <!-- 第二排阅读按钮会通过 JS 动态生成，包括默认灰色按钮 -->
+  <div class="row" id="readingRow"></div>
+</div>
+
+<!-- 左侧目录 -->
+<nav class="toc" id="toc">
+  <div class="toc-title">目录</div>
+  <ul id="tocList"></ul>
+</nav>
+
+<div class="container">
+<h1>《桃姐》：在效率社会的边缘，守护人的温度</h1>
+<p>香港中环，玻璃幕墙反射着资本流动的速度。不远处，一栋旧唐楼里，时间以另一种节奏流淌。钟春桃——大家都叫她桃姐——正在仔细擦拭相框，那是她服务了六十年的李家四代人的合影。</p>
+<p>许鞍华的《桃姐》，表面上讲述一个老佣人与少爷的主仆情谊，实则是一则关于**当代社会如何对待“无用之人”**的哲学寓言。在这个崇尚年轻、效率与产出的时代，桃姐和她所代表的老年群体，成了最沉默的“存在论剩余”。</p>
+<h2><strong>家政的逻辑 vs 人情的逻辑</strong></h2>
+<p>电影开场，Roger（刘德华饰）是一位成功的电影监制，生活被切割成精确的时段：开会、谈项目、应酬。他的家是现代效率的典范——整洁、有序、功能完备。桃姐中风前，这个系统运转完美：她记得他所有喜好，管理所有细节，让他可以完全投身于“有价值”的生产活动。</p>
+<p>桃姐入院后，Roger第一次需要面对生活本身。他不知道洗衣机怎么用，不知道酱油放在哪里，甚至不知道如何与这位照顾自己一生的人相处。<strong>效率逻辑在这里失效了</strong>——你不能用项目管理的方式处理情感，不能用KPI衡量陪伴的价值，不能把一个人的衰老纳入任何“投资回报”计算。</p>
+<p>电影中有一个细节：Roger在超市买毛巾，面对各种品牌功能手足无措。桃姐在时，这些都是“自动”解决的。这个瞬间暴露了现代人的困境：<strong>我们擅长处理抽象事务（资本、数据、项目），却在具体生活（照料、陪伴、情感）面前显得笨拙。</strong></p>
+<h2><strong>养老院：当代社会的“人类仓库”</strong></h2>
+<p>桃姐入住的养老院，是一个微缩社会模型。</p>
+<p>这里有各种“剩余生命”：</p>
+<ul>
+<li><p>坚叔，仍在追逐最后的情欲，用借来的钱找按摩女</p>
+</li>
+<li><p>婆婆，每天坐在窗前等永远不会来的儿子</p>
+</li>
+<li><p>校长，反复讲述自己辉煌的过去</p>
+</li>
+<li><p>还有那位沉默的老人，只是不停地叠纸盒</p>
+</li>
+</ul>
+<p>养老院的运作逻辑是<strong>管理</strong>，而非<strong>生活</strong>。时间被制度化：几点起床、几点吃饭、几点活动。空间被功能化：床位、活动室、食堂。人被分类管理：能自理的、需要照料的、失智的。</p>
+<p>但在这个高度理性的空间里，最动人的恰恰是那些<strong>溢出制度的情感</strong>：</p>
+<p>桃姐和Roger看电影回来，带了一盒牛舌分给院友。老人们像孩子一样兴奋——不是为食物，而是为那份“被记得”的感觉。</p>
+<p>中秋晚会，老人们笨拙地表演，家人席却空了大半。Roger悄悄进来，坐在最后一排。那一刻，他不是成功监制，只是一个“家人”。</p>
+<p>这些时刻揭示了本真性的真相：<strong>在系统试图将一切标准化的地方，人性的微光恰恰在于那些无法被标准化的、具体而微的关怀。</strong></p>
+<h2><strong>尊严的边界：当身体成为负资产</strong></h2>
+<p>桃姐最让人动容的，是她对尊严的执着。</p>
+<p>第一次中风后，她坚持要“辞职”去养老院，不愿成为Roger的负担。在养老院，她总保持整洁，把不多的物品摆放整齐。即使手已颤抖，仍坚持自己剪指甲。</p>
+<p><strong>在一个用产出衡量价值的时代，失去劳动能力的身体成了负资产。</strong> 但桃姐用行动宣告：即使不能再“有用”，人仍有权利保持尊严。</p>
+<p>电影中，Roger的朋友看到他对桃姐的照顾，感慨：“想不到你这么有人情味。”Roger回答：“她照顾了我六十年，我现在照顾她几个月，算什么？”</p>
+<p>这句简单的对话，击穿了现代社会的功利主义逻辑。<strong>人情不是债务往来，而是生命的交织。</strong> 桃姐用六十年织就了一张看不见的情感之网，这张网在效率社会中毫无价值，却是Roger最终接住她的安全网。</p>
+<h2><strong>两种时间的碰撞</strong></h2>
+<p>电影贯穿着两种时间的对比：</p>
+<p><strong>Roger的时间是资本时间</strong>：</p>
+<ul>
+<li><p>碎片化的（一个会议接一个会议）</p>
+</li>
+<li><p>目标导向的（每个时段都要产出）</p>
+</li>
+<li><p>可交换的（时间就是金钱）</p>
+</li>
+</ul>
+<p><strong>桃姐的时间是生命时间</strong>：</p>
+<ul>
+<li><p>循环的（日复一日的照料）</p>
+</li>
+<li><p>记忆性的（通过老照片、老习惯延续）</p>
+</li>
+<li><p>不可逆的（走向衰老与死亡）</p>
+</li>
+</ul>
+<p>当Roger被迫进入桃姐的时间维度——在医院等待、在养老院陪伴、处理琐碎的日常——他的人生节奏被迫慢下来。在这个过程中，他重新发现了被效率生活掩盖的东西：<strong>具体事物的质感，情感的重量，生命的有限性。</strong></p>
+<p>那个著名的场景：Roger推着轮椅上的桃姐在街上，桃姐说：“你推得真好。”Roger答：“我在学着做。”——<strong>学习的不是推轮椅的技巧，而是如何活在另一种时间里。</strong></p>
+<h2><strong>食物的记忆：最后的情感载体</strong></h2>
+<p>食物在电影中是重要的隐喻。</p>
+<p>桃姐记得李家每个人的口味：少爷爱喝汤，太太不吃内脏，小少爷喜欢她做的牛舌。她的手艺不只是烹饪技术，更是<strong>情感记忆的物质载体</strong>。</p>
+<p>当她不能再为Roger做饭，这种传递被迫中断。但转换以另一种形式发生：Roger开始为她买她想吃的食物，记得她挑剔的喜好。<strong>照料关系发生了反转，但情感的核心——通过食物表达的具体关怀——得以延续。</strong></p>
+<p>电影结尾，桃姐在养老院厨房教新护工做牛舌。她的手已经不稳，但仍然坚持传授这道“家传菜”。这是她最后能给出的东西：不是物质遗产，而是一段具身化的记忆，一种通过味道传递的情感方式。</p>
+<h2><strong>当代社会的镜子</strong></h2>
+<p>《桃姐》拍摄于2011年，却精准预言了当下更尖锐的社会现实：</p>
+<p><strong>在全面加速的今天，“桃姐们”的处境更加边缘化：</strong></p>
+<ul>
+<li><p>家政服务被平台化、零工化，不再有六十年的主仆情谊</p>
+</li>
+<li><p>养老成为沉重的经济计算，而非情感责任</p>
+</li>
+<li><p>年轻人被困在“996”中，连陪伴家人的时间都成为奢侈</p>
+</li>
+<li><p>社交媒体展示着精致生活，却掩盖了照料的艰辛与琐碎</p>
+</li>
+</ul>
+<p>电影中，Roger的电影项目碰壁，资本撤资。他站在空荡荡的拍摄现场，突然接到养老院电话。那一刻，<strong>虚拟世界的挫折与真实世界的责任形成了尖锐对比</strong>——哪个更重要？电影可以重拍，但桃姐的时间不等人。</p>
+<h2><strong>在效率的边缘，重建人的尺度</strong></h2>
+<p>《桃姐》给出的启示不是怀旧，而是<strong>如何在效率至上的社会中，为人的情感保留空间</strong>：</p>
+<ol>
+<li><p><strong>重新发现“慢”的价值</strong><br> Roger通过照料桃姐，学会了等待、陪伴、处理琐碎。这些“低效”时刻，恰恰修复了他被过度异化的存在。</p>
+</li>
+<li><p><strong>承认依赖的正当性</strong><br> 现代社会强调独立自主，但桃姐和Roger的关系揭示：<strong>依赖不是弱点，而是人类存在的基本状态。</strong> 我们都在人生的某个阶段需要被照顾，也在某个阶段需要照顾他人。</p>
+</li>
+<li><p><strong>在制度化中寻找人性缝隙</strong><br> 养老院是制度化的空间，但桃姐仍能在其中建立微小的人际联结：分享食物、聊天、一起看电视。<strong>即使在最功能化的环境中，人仍有创造情感联结的能力。</strong></p>
+</li>
+<li><p><strong>重新定义“有用”</strong><br> 桃姐不能再劳动后，她的价值在哪里？电影的回答是：<strong>她的存在本身，她所承载的记忆，她与Roger的情感联结，就是价值。</strong> 这种价值无法量化，却是构成“人之所以为人”的核心。</p>
+</li>
+</ol>
+<h2><strong>最后的告别</strong></h2>
+<p>桃姐临终前，Roger在病床边为她涂护手霜。<br>那双曾经为李家服务了六十年的手，如今布满皱纹与针孔。<br>Roger涂得很慢，很仔细。<br>没有言语，但这个动作说尽了一切：<br><strong>我接受你的衰老，我尊重你的脆弱，我陪伴你的离开。</strong></p>
+<p>在这个崇尚强者、追逐成功的时代，《桃姐》让我们停下脚步，看见那些被速度抛弃的人，那些在效率逻辑中“无价值”的生命阶段，那些无法数据化的情感重量。</p>
+<p>它轻声提醒：<br><strong>真正的文明，不是看它如何对待强者，</strong><br><strong>而是看它如何对待弱者——</strong><br><strong>那些不能再生产的老人，</strong><br><strong>那些需要照料的病者，</strong><br><strong>那些在资本时间中“无用”的生命。</strong></p>
+<p>桃姐最终安息在教会墓地。<br>墓碑简单，但Roger常来看她。<br>他学会了做牛舌，味道总差一点。<br>也许重要的不是复原味道，<br>而是通过这个动作，<br>让一种关怀的方式，<br>在效率社会的缝隙中，<br>继续传递下去。</p>
+<p>在这个意义上，<br><strong>《桃姐》不仅是一部关于衰老的电影，</strong><br><strong>更是一部关于如何在失去温度的时代，</strong><br><strong>重新学会温暖的指南。</strong></p>
+
+</div>
+
+<script>
+// 最终优化的按钮颜色数组 (与CSS中的 --h 对应)
+const darkModes = [
+  "#5E81AC",
+  "#88C0D0",
+  "#D08770",
+  "#EBCB8B",
+  "#A3BE8C",
+  "#B48EAD",
+  "#81A1C1",
+  "#8FBCBB",
+  "#8FBCBB",
+  "#BC8F8F"
+];
+
+const lightModes = [
+  "#1F4E79",
+  "#8B5A2B",
+  "#2C3E75",
+  "#9C6E3A",
+  "#7A4E1D",
+  "#1A3C66",
+  "#5B3F7D",
+  "#2F5F5F",
+  "#2A6F6F",
+  "#2A4F7A"
+];
+
+let currentThemeType = "dark";
+let currentReadingIndex = 1;
+let noReadingMode = false;
+let lastDarkTheme = "theme-dark-2";
+let lastLightTheme = "theme-light-1";
+const PREFS_KEY = "deepwrite_reader_prefs_v1";
+
+function getCurrentThemeClass() {
+  const themeClass = Array.from(document.body.classList).find(c => c.startsWith("theme-"));
+  return themeClass || "theme-dark-2";
+}
+
+function getCurrentReadingClass() {
+  const readingClass = Array.from(document.body.classList).find(c => c.startsWith("reading-"));
+  return readingClass || null;
+}
+
+function savePreferences() {
+  try {
+    const controls = document.getElementById('controls');
+    const toc = document.getElementById('toc');
+    const prefs = {
+      theme: getCurrentThemeClass(),
+      readingMode: getCurrentReadingClass(),
+      noReadingMode,
+      currentReadingIndex,
+      controlsHidden: !!controls?.classList.contains('hidden'),
+      tocHidden: !!toc?.classList.contains('hidden'),
+      tocRight: !!toc?.classList.contains('toc-right'),
+      lastDarkTheme,
+      lastLightTheme,
+    };
+    localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
+  } catch (e) {
+    console.warn('保存阅读偏好失败:', e);
+  }
+}
+
+function loadPreferences() {
+  try {
+    const raw = localStorage.getItem(PREFS_KEY);
+    if (!raw) return null;
+    return JSON.parse(raw);
+  } catch (e) {
+    console.warn('读取阅读偏好失败:', e);
+    return null;
+  }
+}
+
+function renderReadingButtons(isDark) {
+  const row = document.getElementById("readingRow");
+  row.innerHTML = "";
+  const colors = isDark ? darkModes : lightModes;
+  colors.forEach((c, i) => {
+    const btn = document.createElement("button");
+    btn.className = "read-btn";
+    btn.style.background = c;
+    btn.setAttribute('aria-label', (isDark ? '深色' : '浅色') + '阅读配色 ' + (i + 1));
+    btn.onclick = () => setReading(i + 1);
+    row.appendChild(btn);
+  });
+  const defaultBtn = document.createElement("button");
+  defaultBtn.className = "read-btn";
+  defaultBtn.style.background = isDark ? "#aaa" : "#666";
+  defaultBtn.setAttribute('aria-label', '关闭阅读配色模式');
+  defaultBtn.onclick = clearReading;
+  row.appendChild(defaultBtn);
+}
+
+function setTheme(theme) {
+  const isDark = theme.includes("dark");
+  const newType = isDark ? "dark" : "light";
+  document.body.classList.forEach(c => { if (c.startsWith("theme-")) document.body.classList.remove(c); });
+  document.body.classList.add(theme);
+  document.querySelectorAll('.bg-btn').forEach(btn => btn.classList.remove('active'));
+  const activeBgBtn = document.querySelector('.bg-btn[data-theme="' + theme + '"]');
+  if (activeBgBtn) activeBgBtn.classList.add('active');
+  renderReadingButtons(isDark);
+  currentThemeType = newType;
+  if (isDark) {
+    lastDarkTheme = theme;
+  } else {
+    lastLightTheme = theme;
+  }
+  if (noReadingMode) {
+    clearReading();
+  } else {
+    setReading(currentReadingIndex);
+  }
+  savePreferences();
+}
+
+function setReading(index) {
+  const mode = (currentThemeType === "dark" ? "reading-dark-" : "reading-light-") + String(index).padStart(2, '0');
+  document.body.classList.forEach(c => { if (c.startsWith("reading-")) document.body.classList.remove(c); });
+  document.body.classList.add(mode);
+  noReadingMode = false;
+  currentReadingIndex = index;
+  const readBtns = document.querySelectorAll('.read-btn');
+  readBtns.forEach((btn, i) => {
+    if (i + 1 === index) { btn.classList.add('active'); } else { btn.classList.remove('active'); }
+  });
+  savePreferences();
+}
+
+function clearReading() {
+  document.body.classList.forEach(c => { if (c.startsWith("reading-")) document.body.classList.remove(c); });
+  document.querySelectorAll('.read-btn').forEach(btn => btn.classList.remove('active'));
+  noReadingMode = true;
+  savePreferences();
+}
+
+// 生成左侧目录
+function generateToc() {
+  const container = document.querySelector('.container');
+  if (!container) return;
+
+  const headings = container.querySelectorAll('h1, h2');
+  const tocList = document.getElementById('tocList');
+  if (!tocList) return;
+
+  tocList.innerHTML = '';
+
+  headings.forEach((heading, index) => {
+    const id = 'heading-' + index;
+    heading.id = id;
+
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.href = '#' + id;
+    a.dataset.headingId = id;
+    a.textContent = heading.textContent;
+    a.className = heading.tagName.toLowerCase() === 'h1' ? 'toc-h1' : 'toc-h2';
+    a.setAttribute('aria-label', '跳转到：' + (heading.textContent || '标题'));
+    li.appendChild(a);
+    tocList.appendChild(li);
+  });
+
+  updateActiveTocByScroll();
+}
+
+let _tocScrollTicking = false;
+let _tocScrollLastRun = 0;
+const TOC_SCROLL_INTERVAL_MS = 66;
+
+function updateActiveTocByScroll() {
+  const headings = Array.from(document.querySelectorAll('.container h1, .container h2'));
+  if (!headings.length) return;
+
+  const links = Array.from(document.querySelectorAll('#tocList a'));
+  if (!links.length) return;
+
+  const threshold = window.innerHeight * 0.28;
+  let activeId = headings[0].id;
+
+  for (const heading of headings) {
+    const rect = heading.getBoundingClientRect();
+    if (rect.top <= threshold) {
+      activeId = heading.id;
+    } else {
+      break;
+    }
+  }
+
+  links.forEach((link) => {
+    link.classList.toggle('active', link.dataset.headingId === activeId);
+  });
+}
+
+function setupTocScrollSpy() {
+  window.addEventListener('scroll', () => {
+    const now = performance.now();
+    if (now - _tocScrollLastRun < TOC_SCROLL_INTERVAL_MS) return;
+    if (_tocScrollTicking) return;
+    _tocScrollTicking = true;
+    _tocScrollLastRun = now;
+    window.requestAnimationFrame(() => {
+      const toc = document.getElementById('toc');
+      if (document.hidden || (toc && toc.classList.contains('hidden'))) {
+        _tocScrollTicking = false;
+        return;
+      }
+      updateActiveTocByScroll();
+      _tocScrollTicking = false;
+    });
+  }, { passive: true });
+
+  window.addEventListener('resize', () => {
+    updateActiveTocByScroll();
+  });
+
+  document.getElementById('tocList')?.addEventListener('click', () => {
+    setTimeout(updateActiveTocByScroll, 120);
+  });
+}
+
+// 切换控制按钮显示/隐藏
+function toggleControls() {
+  const controls = document.getElementById('controls');
+  controls.classList.toggle('hidden');
+  updateFloatingPanelState();
+  savePreferences();
+}
+
+// 切换目录显示/隐藏
+function toggleToc() {
+  const toc = document.getElementById('toc');
+  toc.classList.toggle('hidden');
+  updateFloatingPanelState();
+  savePreferences();
+}
+
+// 当“主题区隐藏 + 目录隐藏”同时成立时，右上工具条进入紧凑态
+function updateFloatingPanelState() {
+  const panel = document.querySelector('.floating-panel');
+  const controls = document.getElementById('controls');
+  const toc = document.getElementById('toc');
+  if (!panel || !controls || !toc) return;
+
+  const shouldCompact = controls.classList.contains('hidden') && toc.classList.contains('hidden');
+  panel.classList.toggle('compact', shouldCompact);
+}
+
+// 切换目录左右位置
+function toggleTocSide() {
+  const toc = document.getElementById('toc');
+  const label = document.getElementById('tocSideLabel');
+  toc.classList.toggle('toc-right');
+  if (label) {
+    label.textContent = toc.classList.contains('toc-right') ? '目录靠右' : '目录靠左';
+  }
+  savePreferences();
+}
+
+function toggleThemeQuick() {
+  const currentTheme = getCurrentThemeClass();
+  const isDark = currentTheme.includes('dark');
+  setTheme(isDark ? lastLightTheme : lastDarkTheme);
+}
+
+function setupKeyboardShortcuts() {
+  document.addEventListener('keydown', (event) => {
+    if (event.metaKey || event.ctrlKey || event.altKey) return;
+    const target = event.target;
+    if (target instanceof HTMLElement) {
+      const tag = target.tagName.toLowerCase();
+      if (target.isContentEditable || tag === 'input' || tag === 'textarea' || tag === 'select') return;
+    }
+
+    const key = event.key;
+    if (key === 'f' || key === 'F') {
+      event.preventDefault();
+      toggleFullscreen();
+    } else if (key === 't' || key === 'T') {
+      event.preventDefault();
+      toggleToc();
+    } else if (key === 'h' || key === 'H') {
+      event.preventDefault();
+      toggleControls();
+    } else if (key === '[') {
+      event.preventDefault();
+      const toc = document.getElementById('toc');
+      if (toc?.classList.contains('toc-right')) toggleTocSide();
+    } else if (key === ']') {
+      event.preventDefault();
+      const toc = document.getElementById('toc');
+      if (toc && !toc.classList.contains('toc-right')) toggleTocSide();
+    } else if (key === 'z' || key === 'Z') {
+      event.preventDefault();
+      toggleThemeQuick();
+    }
+  });
+}
+
+function applyPreferences() {
+  const prefs = loadPreferences();
+  if (!prefs) {
+    setTheme("theme-dark-2");
+    return;
+  }
+
+  if (prefs.lastDarkTheme) lastDarkTheme = prefs.lastDarkTheme;
+  if (prefs.lastLightTheme) lastLightTheme = prefs.lastLightTheme;
+
+  setTheme(prefs.theme || "theme-dark-2");
+
+  if (prefs.noReadingMode) {
+    clearReading();
+  } else if (prefs.readingMode) {
+    const match = String(prefs.readingMode).match(/reading-(dark|light)-(d{2})/);
+    if (match) {
+      currentReadingIndex = Number(match[2]) || 1;
+      setReading(currentReadingIndex);
+    }
+  } else if (typeof prefs.currentReadingIndex === 'number') {
+    currentReadingIndex = prefs.currentReadingIndex;
+    setReading(currentReadingIndex);
+  }
+
+  const controls = document.getElementById('controls');
+  const toc = document.getElementById('toc');
+  if (controls && prefs.controlsHidden) controls.classList.add('hidden');
+  if (toc && prefs.tocRight) toc.classList.add('toc-right');
+  if (toc && prefs.tocHidden) toc.classList.add('hidden');
+
+  const label = document.getElementById('tocSideLabel');
+  if (label && toc) label.textContent = toc.classList.contains('toc-right') ? '目录靠右' : '目录靠左';
+
+  updateFloatingPanelState();
+}
+
+// 全屏阅读：隐藏浏览器菜单/地址栏等干扰元素（由浏览器支持情况决定）
+function updateFullscreenButtonState() {
+  const btn = document.getElementById('fullscreenBtn');
+  const label = document.getElementById('fullscreenLabel');
+  const icon = document.getElementById('fullscreenIcon');
+  if (!btn || !label || !icon) return;
+
+  const isFullscreen = !!document.fullscreenElement;
+  btn.classList.toggle('is-active', isFullscreen);
+  label.textContent = isFullscreen ? '退出全屏' : '全屏';
+  icon.textContent = isFullscreen ? '🡽' : '⛶';
+}
+
+async function toggleFullscreen() {
+  const root = document.documentElement;
+  const canUseFullscreen = !!root.requestFullscreen;
+  if (!canUseFullscreen) {
+    const label = document.getElementById('fullscreenLabel');
+    if (label) label.textContent = '当前浏览器不支持';
+    return;
+  }
+
+  try {
+    if (!document.fullscreenElement) {
+      await root.requestFullscreen();
+    } else {
+      await document.exitFullscreen();
+    }
+  } catch (e) {
+    console.warn('切换全屏失败:', e);
+  }
+}
+
+// 移动端：点击正文空白处自动收起目录；点击目录链接后也自动收起
+function setupMobileTocAutoCollapse() {
+  if (!window.matchMedia('(max-width: 1024px)').matches) return;
+
+  const toc = document.getElementById('toc');
+  const container = document.querySelector('.container');
+  if (!toc || !container) return;
+
+  container.addEventListener('click', () => {
+    if (!toc.classList.contains('hidden')) {
+      toc.classList.add('hidden');
+    }
+  });
+
+  toc.addEventListener('click', (event) => {
+    const target = event.target;
+    if (target instanceof HTMLElement && target.closest('a')) {
+      setTimeout(() => toc.classList.add('hidden'), 120);
+    }
+  });
+}
+
+// 初始化
+applyPreferences();
+setTimeout(() => {
+  generateToc();
+  setupTocScrollSpy();
+  updateActiveTocByScroll();
+}, 100); // 等待DOM完全加载后生成目录
+
+// 小屏幕自动折叠目录（点击“目录”按钮可展开）
+if (window.matchMedia('(max-width: 1024px)').matches) {
+  const toc = document.getElementById('toc');
+  if (toc) toc.classList.add('hidden');
+}
+
+setupMobileTocAutoCollapse();
+updateFloatingPanelState();
+updateFullscreenButtonState();
+setupKeyboardShortcuts();
+savePreferences();
+
+document.addEventListener('fullscreenchange', updateFullscreenButtonState);
+</script>
+</body>
+</html>

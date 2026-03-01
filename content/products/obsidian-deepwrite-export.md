@@ -20,6 +20,12 @@ featured: true
 - 移动端友好的目录交互
 - 会员与授权体系（分级配额、授权校验）
 
+## 导出效果示例
+
+- 示例列表页：[https://website.deepwrite.online/showcase/deepwrite-export](https://website.deepwrite.online/showcase/deepwrite-export)
+- 你可以直接打开查看导出的 HTML 成品效果（目录、主题、全屏、移动端适配等）
+- 示例会持续更新，便于购买前预览实际阅读体验
+
 ## 安装方式
 
 ### 方式一：手动安装（推荐）
