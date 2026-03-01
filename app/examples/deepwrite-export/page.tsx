@@ -13,6 +13,7 @@ type ShowcaseFile = {
   href: string;
   size: string;
   updatedAt: string;
+  updatedAtTs: number;
 };
 
 function formatBytes(bytes: number): string {
@@ -41,9 +42,10 @@ function getShowcaseFiles(): ShowcaseFile[] {
         href: `/showcase/deepwrite-export/${encodeURIComponent(name)}`,
         size: formatBytes(stat.size),
         updatedAt: new Date(stat.mtime).toLocaleString("zh-CN"),
+        updatedAtTs: stat.mtimeMs,
       };
     })
-    .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
+    .sort((a, b) => b.updatedAtTs - a.updatedAtTs);
 }
 
 export default function DeepWriteExportShowcasePage() {
@@ -120,11 +122,13 @@ export default function DeepWriteExportShowcasePage() {
               overflow: "hidden",
             }}
           >
+            <div style={{ overflowX: "auto" }}>
             <div
               style={{
                 display: "grid",
                 gridTemplateColumns: "1fr 120px 220px 120px",
                 gap: "12px",
+                minWidth: "700px",
                 padding: "14px 16px",
                 fontSize: "12px",
                 color: "#64748b",
@@ -145,6 +149,7 @@ export default function DeepWriteExportShowcasePage() {
                   display: "grid",
                   gridTemplateColumns: "1fr 120px 220px 120px",
                   gap: "12px",
+                  minWidth: "700px",
                   padding: "14px 16px",
                   borderBottom: "1px solid #1e1e2e",
                   alignItems: "center",
@@ -170,6 +175,7 @@ export default function DeepWriteExportShowcasePage() {
                 </div>
               </div>
             ))}
+            </div>
           </div>
         )}
       </div>
