@@ -1,7 +1,6 @@
-import fs from "fs";
-import path from "path";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getDeepWriteExportShowcaseItems } from "@/lib/showcase-files";
 
 export const metadata: Metadata = {
   title: "DeepWrite Export HTML 示例",
@@ -9,47 +8,14 @@ export const metadata: Metadata = {
 };
 
 type ShowcaseFile = {
+  slug: string;
   name: string;
-  href: string;
   size: string;
   updatedAt: string;
-  updatedAtTs: number;
 };
 
-function formatBytes(bytes: number): string {
-  if (bytes < 1024) return `${bytes} B`;
-  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
-  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
-}
-
-function getShowcaseFiles(): ShowcaseFile[] {
-  const dir = path.join(process.cwd(), "public", "showcase", "deepwrite-export");
-
-  if (!fs.existsSync(dir)) {
-    return [];
-  }
-
-  const names = fs
-    .readdirSync(dir)
-    .filter((name) => name.toLowerCase().endsWith(".html"));
-
-  return names
-    .map((name) => {
-      const fullPath = path.join(dir, name);
-      const stat = fs.statSync(fullPath);
-      return {
-        name,
-        href: `/showcase/deepwrite-export/${encodeURIComponent(name)}`,
-        size: formatBytes(stat.size),
-        updatedAt: new Date(stat.mtime).toLocaleString("zh-CN"),
-        updatedAtTs: stat.mtimeMs,
-      };
-    })
-    .sort((a, b) => b.updatedAtTs - a.updatedAtTs);
-}
-
 export default function DeepWriteExportShowcasePage() {
-  const files = getShowcaseFiles();
+  const files: ShowcaseFile[] = getDeepWriteExportShowcaseItems();
 
   return (
     <div style={{ padding: "60px 24px 100px" }}>
@@ -160,7 +126,7 @@ export default function DeepWriteExportShowcasePage() {
                 <div style={{ fontSize: "13px", color: "#94a3b8" }}>{file.updatedAt}</div>
                 <div style={{ textAlign: "right" }}>
                   <Link
-                    href={file.href}
+                    href={`/examples/deepwrite-export/${file.slug}/`}
                     target="_blank"
                     rel="noreferrer"
                     style={{
