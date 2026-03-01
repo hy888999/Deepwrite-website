@@ -5,6 +5,7 @@ date: "2026-03-01"
 type: "obsidian"
 tags: ["Obsidian", "语义配色", "知识管理", "写作效率", "Markdown"]
 github: "https://github.com/hy888999/obsidian-deepwrite-themes"
+download: "https://website.deepwrite.online/downloads/deepwrite-themes-latest.zip"
 featured: true
 ---
 
