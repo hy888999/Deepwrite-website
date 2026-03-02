@@ -62,7 +62,7 @@ featured: true
 
 安装步骤：
 
-1. 下载并解压安装包，确认有 `main.js` 与 `manifest.json`
+1. 下载并解压安装包，确认有 `main.js` 与 `manifest.json`（以及安装说明 `INSTALL.md`）
 2. 打开 Obsidian，进入目标 Vault
 3. 打开该 Vault 的根目录
 4. 在 Finder 按 `Cmd + Shift + .` 显示隐藏目录
@@ -75,6 +75,24 @@ featured: true
 - 找不到 `.obsidian`：先按 `Cmd + Shift + .`
 - 插件不显示：确认复制路径是 **Vault 内** 的 `.obsidian/plugins/...`
 - 多个 Vault 需分别安装：插件不会自动跨 Vault 同步
+
+### 新手安装 FAQ
+
+**Q1：我是不是在给 Obsidian“软件本体”安装插件？**
+
+A：不是。你是在给某个 Vault 安装插件。Vault 是笔记库文件夹，每个 Vault 独立。
+
+**Q2：为什么一定要放进 `.obsidian/plugins/`？**
+
+A：因为 Obsidian 只会扫描这个固定目录里的插件，不在这里就不会被识别。
+
+**Q3：为什么我找不到 `.obsidian`？**
+
+A：它是隐藏目录。在 Finder 按 `Cmd + Shift + .` 即可显示。
+
+**Q4：我有 3 个 Vault，需要装几次？**
+
+A：需要分别安装 3 次。插件不会自动跨 Vault 同步。
 
 ## 常见问题
 
