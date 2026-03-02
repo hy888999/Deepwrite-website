@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const navLinks = [
   { href: "/", label: "首页" },
@@ -14,6 +14,35 @@ const navLinks = [
 export default function Navbar() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [theme, setTheme] = useState<string>("system");
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const initial = saved || (prefersDark ? "dark" : "light");
+      setTheme(saved || (prefersDark ? "dark" : "light"));
+      if (!saved) {
+        // Don't set class if following system by default; but we still set chosen class for readability
+      }
+      document.documentElement.classList.toggle("dark", initial === "dark");
+      document.documentElement.classList.toggle("light", initial === "light");
+    } catch (e) {
+      // noop
+    }
+  }, []);
+
+  function toggleTheme() {
+    try {
+      const next = theme === "dark" ? "light" : "dark";
+      localStorage.setItem("theme", next);
+      document.documentElement.classList.toggle("dark", next === "dark");
+      document.documentElement.classList.toggle("light", next === "light");
+      setTheme(next);
+    } catch (e) {
+      // noop
+    }
+  }
 
   return (
     <header
@@ -116,6 +145,27 @@ export default function Navbar() {
             );
           })}
         </div>
+
+        {/* Theme toggle */}
+        <button
+          onClick={toggleTheme}
+          title="切换浅/深色模式"
+          style={{
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            color: "#94a3b8",
+            padding: "8px",
+            marginRight: 8,
+          }}
+          aria-label="Toggle theme"
+        >
+          {theme === "dark" ? (
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+          ) : (
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.76 4.84l-1.8-1.79L3.17 4.84l1.79 1.8 1.8-1.8zm10.48 14.32l1.79 1.79 1.79-1.79-1.79-1.79-1.79 1.79zM12 5a7 7 0 100 14 7 7 0 000-14zM4 11H1v2h3v-2zm20 0h-3v2h3v-2zM6.76 19.16l1.8 1.79 1.79-1.79-1.79-1.8-1.8 1.8zM19.24 4.84l-1.79-1.79-1.8 1.79 1.8 1.79 1.79-1.79z"/></svg>
+          )}
+        </button>
 
         {/* Mobile Menu Button */}
         <button

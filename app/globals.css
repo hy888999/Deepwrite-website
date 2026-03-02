@@ -1,7 +1,49 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-@theme {
+/* Theme & typography variables
+   - Default values are the light theme.
+   - If user prefers dark, @media (prefers-color-scheme: dark) will override.
+   - The `.dark` / `.light` classes on <html> force theme when present. */
+
+:root {
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f8fafc;
+  --color-bg-card: #ffffff;
+  --color-border: #e6eef7;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-muted: #64748b;
+  --color-accent-purple: #7c3aed;
+  --color-accent-cyan: #0891b2;
+  --color-accent-blue: #2563eb;
+
+  --font-sans: "Inter", "Noto Sans SC", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+
+  --text-base: 16px;
+  --text-scale-ratio: 1.125;
+  --content-max-width: 760px;
+  --leading: 1.75;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg-primary: #0a0a0f;
+    --color-bg-secondary: #0f0f1a;
+    --color-bg-card: #13131f;
+    --color-border: #1e1e2e;
+    --color-text-primary: #e2e8f0;
+    --color-text-secondary: #94a3b8;
+    --color-text-muted: #475569;
+    --color-accent-purple: #a855f7;
+    --color-accent-cyan: #06b6d4;
+    --color-accent-blue: #3b82f6;
+  }
+}
+
+/* Force classes on <html> to override system preference */
+html.dark {
   --color-bg-primary: #0a0a0f;
   --color-bg-secondary: #0f0f1a;
   --color-bg-card: #13131f;
@@ -12,13 +54,19 @@
   --color-accent-purple: #a855f7;
   --color-accent-cyan: #06b6d4;
   --color-accent-blue: #3b82f6;
-
-  --font-sans: "Inter", "Noto Sans SC", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", "Fira Code", monospace;
 }
 
-:root {
-  color-scheme: dark;
+html.light {
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f8fafc;
+  --color-bg-card: #ffffff;
+  --color-border: #e6eef7;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-muted: #64748b;
+  --color-accent-purple: #7c3aed;
+  --color-accent-cyan: #0891b2;
+  --color-accent-blue: #2563eb;
 }
 
 html {
@@ -29,9 +77,40 @@ body {
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
   font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Global content wrapper for consistent measure */
+.page-wrapper {
+  max-width: var(--content-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/* Improve prose readability defaults */
+.prose {
+  max-width: var(--content-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1rem;
+  line-height: 1.9;
+  color: var(--color-text-primary);
+}
+
+/* Headings weight & spacing */
+h1 { font-size: clamp(1.6rem, 2.6vw, 2.6rem); margin-top: 0.4rem; margin-bottom: 0.6rem; letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.3rem, 2.0vw, 1.8rem); margin-top: 1.2rem; margin-bottom: 0.5rem; }
+h3 { font-size: clamp(1.1rem, 1.6vw, 1.3rem); margin-top: 1rem; margin-bottom: 0.45rem; }
+p { margin-bottom: 1rem; color: var(--color-text-secondary); }
+
+/* Make code and pre readable in both themes */
+pre { background: var(--color-bg-secondary); border: 1px solid var(--color-border); }
+code:not(pre code) { background: rgba(0,0,0,0.04); color: var(--color-accent-purple); padding: 2px 6px; border-radius: 4px; }
 
 /* Scrollbar */
 ::-webkit-scrollbar {

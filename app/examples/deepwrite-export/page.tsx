@@ -12,6 +12,7 @@ type ShowcaseFile = {
   name: string;
   size: string;
   updatedAt: string;
+  fileName: string;
 };
 
 export default function DeepWriteExportShowcasePage() {
@@ -125,10 +126,10 @@ export default function DeepWriteExportShowcasePage() {
                 <div style={{ fontSize: "13px", color: "#94a3b8" }}>{file.size}</div>
                 <div style={{ fontSize: "13px", color: "#94a3b8" }}>{file.updatedAt}</div>
                 <div style={{ textAlign: "right" }}>
-                  <Link
-                    href={`/examples/deepwrite-export/${file.slug}/`}
+                  <a
+                    href={`/showcase/deepwrite-export/${encodeURIComponent(file.fileName)}`}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     style={{
                       fontSize: "13px",
                       color: "#22d3ee",
@@ -137,7 +138,7 @@ export default function DeepWriteExportShowcasePage() {
                     }}
                   >
                     查看示例 ↗
-                  </Link>
+                  </a>
                 </div>
               </div>
             ))}
