@@ -10,6 +10,7 @@
     "check:showcase": "bash scripts/check-showcase.sh"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.6.1",
     "gray-matter": "^4.0.3",
     "next": "latest",
     "next-mdx-remote": "^6.0.0",
