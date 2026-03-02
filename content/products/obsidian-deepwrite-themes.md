@@ -47,31 +47,34 @@ featured: true
 
 ## 安装方式
 
-### 方式一：一键安装（推荐，macOS）
+### 仅支持手动安装（推荐按步骤完成）
 
-1. 下载并解压安装包
-2. 双击运行 `install.command`
-3. 按提示输入你的 Vault 根目录（建议手动输入，速度更快）
-4. 打开 Obsidian → 设置 → 第三方插件，启用 **DeepWrite Themes**
+先理解关系：
 
-> 提示：`.obsidian` 是隐藏目录。Finder 里按 `Cmd + Shift + .` 可显示隐藏文件。
+- **Obsidian** 是应用程序
+- **Vault** 是你的笔记库文件夹
+- 插件必须放在 Vault 的 `.obsidian/plugins/` 里，Obsidian 才会识别
 
-如果 macOS 安全警示阻止运行（“无法打开”或“已损坏”），请按以下命令处理：
+为什么是隐藏目录？
 
-```bash
-cd "你的解压目录"
-xattr -dr com.apple.quarantine .
-chmod +x install.command
-./install.command
-```
+- `.obsidian` 是 Vault 的配置目录，默认隐藏，保存插件、主题与设置
+- 这是 Obsidian 固定的插件扫描位置
 
-### 方式二：手动安装
+安装步骤：
 
-1. 将 `main.js` 与 `manifest.json` 复制到目标 Vault：
-   `.obsidian/plugins/obsidian-deepwrite-themes/`
-2. 在 Obsidian「第三方插件」中启用 **DeepWrite Themes**
+1. 下载并解压安装包，确认有 `main.js` 与 `manifest.json`
+2. 打开 Obsidian，进入目标 Vault
+3. 打开该 Vault 的根目录
+4. 在 Finder 按 `Cmd + Shift + .` 显示隐藏目录
+5. 进入（或创建）`.obsidian/plugins/obsidian-deepwrite-themes/`
+6. 复制 `main.js` 与 `manifest.json` 到该目录
+7. 回到 Obsidian → 设置 → 第三方插件，启用 **DeepWrite Themes**
 
-> 说明：插件按 Vault 生效；多个 Vault 需分别安装。
+排查提示：
+
+- 找不到 `.obsidian`：先按 `Cmd + Shift + .`
+- 插件不显示：确认复制路径是 **Vault 内** 的 `.obsidian/plugins/...`
+- 多个 Vault 需分别安装：插件不会自动跨 Vault 同步
 
 ## 常见问题
 
