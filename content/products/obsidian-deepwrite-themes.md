@@ -47,12 +47,29 @@ featured: true
 
 ## 安装方式
 
-### 手动安装
+### 方式一：一键安装（推荐，macOS）
 
-1. 下载或构建本项目
-2. 将 `main.js` 与 `manifest.json` 复制到目标 Vault：
+1. 下载并解压安装包
+2. 双击运行 `install.command`
+3. 按提示输入你的 Vault 根目录（建议手动输入，速度更快）
+4. 打开 Obsidian → 设置 → 第三方插件，启用 **DeepWrite Themes**
+
+> 提示：`.obsidian` 是隐藏目录。Finder 里按 `Cmd + Shift + .` 可显示隐藏文件。
+
+如果 macOS 安全警示阻止运行（“无法打开”或“已损坏”），请按以下命令处理：
+
+```bash
+cd "你的解压目录"
+xattr -dr com.apple.quarantine .
+chmod +x install.command
+./install.command
+```
+
+### 方式二：手动安装
+
+1. 将 `main.js` 与 `manifest.json` 复制到目标 Vault：
    `.obsidian/plugins/obsidian-deepwrite-themes/`
-3. 在 Obsidian「第三方插件」中启用 **DeepWrite Themes**
+2. 在 Obsidian「第三方插件」中启用 **DeepWrite Themes**
 
 > 说明：插件按 Vault 生效；多个 Vault 需分别安装。
 
