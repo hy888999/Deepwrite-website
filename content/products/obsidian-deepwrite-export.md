@@ -43,13 +43,18 @@ featured: true
 
 安装步骤：
 
-1. 下载并解压安装包，确认有 `main.js` 与 `manifest.json`（以及安装说明 `INSTALL.md`）
+1. 下载并解压安装包，确认有 `main.js` 与 `manifest.json`（以及 `文件放置(安装）说明.md`）
 2. 打开 Obsidian，进入目标 Vault
 3. 打开该 Vault 的根目录
 4. 在 Finder 按 `Cmd + Shift + .` 显示隐藏目录
 5. 进入（或创建）`.obsidian/plugins/deepwrite-export/`
 6. 复制 `main.js` 与 `manifest.json` 到该目录
 7. 回到 Obsidian → 设置 → 第三方插件，启用 **DeepWrite Export**
+
+重要声明：
+
+- 本插件不运行单独安装程序
+- 你把文件放到指定目录的过程，就是安装过程本身
 
 排查提示：
 
