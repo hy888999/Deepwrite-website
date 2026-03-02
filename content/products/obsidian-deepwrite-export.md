@@ -1,11 +1,11 @@
 ---
-title: "DeepWrite Export for Obsidian"
+title: "DeepWrite Export HTML for Obsidian"
 description: "将 Obsidian 笔记一键导出为高质量 HTML，支持目录导航、主题切换、全屏阅读与移动端适配。"
 date: "2026-03-01"
 type: "obsidian"
 tags: ["Obsidian", "Markdown", "HTML 导出", "知识管理", "效率工具"]
 github: "https://github.com/your-org/obsidian-deepwrite-export"
-download: "https://website.deepwrite.online/downloads/deepwrite-export-latest.zip"
+download: "https://website.deepwrite.online/downloads/DeepWrite%20Export%20HTML%20for%20Obsidian.zip"
 featured: true
 ---
 
