@@ -6,7 +6,7 @@ category: "ai"
 tags: ["DeepWrite", "AI写作", "知识管理", "Markdown", "创作方法", "工作流"]
 ---
 
-如果你想进一步了解 DeepWrite 产品本身，可以先访问官网：[https://www.deepwrite.online](https://www.deepwrite.online)。
+如果你想进一步了解 DeepWrite 产品本身，可以先访问 DeepWrite 系统网站：<a href="https://www.deepwrite.online" target="_blank" rel="noreferrer">https://www.deepwrite.online</a>。
 
 人类区别于其它任何物种的特征，就是人类有自己的语言文字，有自己的思想情感，有自己的思考和创作，进而有科学发明、有技术应用、有文化历史、有政治宗教。这些构成了人类文明的根基，也塑造了我们作为人的精神底色。
 

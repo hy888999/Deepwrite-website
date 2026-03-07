@@ -8,7 +8,7 @@ github: "https://github.com/hy888999/DeepWrite"
 featured: true
 ---
 
-欢迎访问 DeepWrite 官网：[https://www.deepwrite.online](https://www.deepwrite.online)。如果你想更直观地了解产品定位、使用场景和整体能力，可以先从官网开始浏览。
+欢迎访问 DeepWrite 产品网站：<a href="https://www.deepwrite.online" target="_blank" rel="noreferrer">https://www.deepwrite.online</a>。如果你想更直观地了解产品定位、使用场景和整体能力，可以先从产品网站开始浏览。
 
 ## 产品介绍
 
@@ -55,7 +55,6 @@ DeepWrite 的后续方向，并不止于“让 AI 生成内容”，而是继续
 - 场景方案
 - 一键方案
 - 流程节点
-- 子流程
 - 个人流程与组织流程
 
 这意味着它未来可以逐步从 AI 工具升级为 AI 解决方案平台。
@@ -63,10 +62,9 @@ DeepWrite 的后续方向，并不止于“让 AI 生成内容”，而是继续
 ## 核心理念
 
 DeepWrite 当前已经形成了一套比较清晰的方法论基础。
-
 ### 文档负责事实
 
-文档用来承载原始信息、背景材料、历史记录、项目资料、会议纪要和知识内容。
+欢迎访问 DeepWrite 系统网站：<a href="https://www.deepwrite.online" target="_blank" rel="noreferrer">https://www.deepwrite.online</a>。
 
 ### 提示词负责本次任务
 
