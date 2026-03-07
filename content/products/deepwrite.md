@@ -8,6 +8,8 @@ github: "https://github.com/hy888999/DeepWrite"
 featured: true
 ---
 
+欢迎访问 DeepWrite 官网：[https://www.deepwrite.online](https://www.deepwrite.online)。如果你想更直观地了解产品定位、使用场景和整体能力，可以先从官网开始浏览。
+
 ## 产品介绍
 
 **DeepWrite** 是一套面向个人与组织的 AI 文档工作台。
