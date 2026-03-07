@@ -8,7 +8,7 @@ github: "https://github.com/hy888999/DeepWrite"
 featured: true
 ---
 
-欢迎访问 DeepWrite 系统网站：<a href="https://www.deepwrite.online" target="_blank" rel="noreferrer">https://www.deepwrite.online</a>。
+欢迎访问 DeepWrite 系统网站：[https://www.deepwrite.online](https://www.deepwrite.online)。
 
 ## 产品介绍
 
